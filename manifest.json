@@ -1,0 +1,19 @@
+{
+    "manifest_version": 3,
+    "name": "WhatsAppWeb Blocker",
+    "version": "1.0.0",
+    "description": "Extensão para blockear mensagem de números indesejados em grupos do WhatsAppWeb",
+    "action": {
+      "default_icon": "assets/icon16.png",
+      "default_popup": "popup.html"
+    },
+    "icons": {
+      "16": "assets/icon16.png",
+      "48": "assets/icon48.png",
+      "128": "assets/icon128.png"
+    },
+    "content_scripts": [{
+      "matches": ["https://web.whatsapp.com/"],
+      "js": ["blocker.js"]
+    }]
+  }
