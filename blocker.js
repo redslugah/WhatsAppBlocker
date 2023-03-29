@@ -1,17 +1,45 @@
-//function remove_msg(){
-//    document.querySelectorAll('[data-pre-plain-text*="+55 82 8889-4762: "]').forEach(e => e.closest('div[data-testid="msg-container"]').remove());
-//}
-var numero = "+55 32 8865-0690"
-var nome = "Talvez Gui"
-var nome2 = "Talvez Guilherme Augusto"
-setInterval(function(){
-    document.querySelectorAll('[data-pre-plain-text*="'+numero+': "]').forEach(e => e.closest('div[data-testid="msg-container"]').style.display = 'none');
-    document.querySelectorAll('[aria-label="'+nome+'"]').forEach(e => e.closest('div[data-testid="msg-container"]').style.display = 'none');
-    document.querySelectorAll('[aria-label="'+nome2+'"]').forEach(e => e.closest('div[data-testid="msg-container"]').style.display = 'none');
+let defaultNumbers = ["+55 32 8865-0690", "+55 82 8889-4762"];
+let forbiddenLabels = [
+  "Talvez Gui",
+  "Talvez Guilherme Augusto",
+  "Franco",
+  "Talvez Franco",
+];
 
-}, 1000);
+function hideMessagesWithLabel(label) {
+  document.querySelectorAll(`[aria-label="${label}"]`).forEach((element) => {
+    const container = element.closest('div[data-testid="msg-container"]');
+    if (container && !!container.style) {
+      container.style.display = "none";
+    }
+  });
+}
 
-//document.addEventListener("DOMContentLoaded", function() {
-//    remove_msg();
-//    document.querySelectorAll('[data-pre-plain-text*="+55 82 8889-4762: "]').forEach(e => e.closest('div[data-testid="msg-container"]').remove());
-//  });
+function hideMessagesWithNumber(number) {
+  document
+    .querySelectorAll(`[data-pre-plain-text*="${number}:"]`)
+    .forEach((element) => {
+      const container = element.closest('div[data-testid="msg-container"]');
+      if (container && !!container.style) {
+        container.style.display = "none";
+      }
+    });
+}
+
+function hideMessagesQuoted(number) {
+  document
+    .querySelectorAll(`[data-pre-plain-text*="${number}:"]`)
+    .forEach((element) => {
+      const container = element.closest('div[aria-label="Mensagem citada"]');
+      if (container && !!container.style) {
+        container.style.display = "none";
+      }
+    });
+}
+
+setInterval(() => {
+  defaultNumbers.forEach((number) => hideMessagesWithNumber(number));
+  defaultNumbers.forEach((number) => hideMessagesQuoted(number));
+  forbiddenLabels.forEach((label) => hideMessagesWithLabel(label));
+  forbiddenLabels.forEach((label) => hideMessagesQuoted(label));
+}, 250);
