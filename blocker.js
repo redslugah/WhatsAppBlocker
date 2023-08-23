@@ -1,9 +1,7 @@
-let defaultNumbers = ["+55 32 8865-0690", "+55 82 8889-4762"];
+let defaultNumbers = ["+55 32 8865-0690"];
 let forbiddenLabels = [
   "Talvez Gui",
-  "Talvez Guilherme Augusto",
-  "Franco",
-  "Talvez Franco",
+  "Talvez Guilherme Augusto"
 ];
 
 function hideMessagesWithLabel(label) {
