@@ -6,7 +6,7 @@ let forbiddenLabels = [
 
 function hideMessagesWithLabel(label) {
   document.querySelectorAll(`[aria-label="${label}"]`).forEach((element) => {
-    const container = element.closest('div[role="row"]');
+    const container = element.closest('div[class="CzM4m"]');
     if (container && !!container.style) {
       container.style.display = "none";
     }
