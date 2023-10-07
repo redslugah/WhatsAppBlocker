@@ -6,7 +6,7 @@ let forbiddenLabels = [
 
 function hideMessagesWithLabel(label) {
   document.querySelectorAll(`[aria-label="${label}"]`).forEach((element) => {
-    const container = element.closest('div[class="CzM4m"]');
+    const container = element.closest('div[class*="CzM4m"]');
     if (container && !!container.style) {
       container.style.display = "none";
     }
@@ -17,7 +17,7 @@ function hideMessagesWithNumber(number) {
   document
     .querySelectorAll(`[data-pre-plain-text*="${number}:"]`)
     .forEach((element) => {
-      const container = element.closest('div[class="CzM4m"]');
+      const container = element.closest('div[class*="CzM4m"]');
       if (container && !!container.style) {
         container.style.display = "none";
       }
@@ -28,7 +28,7 @@ function hideMessagesQuoted(lumber) {
   document
     .querySelectorAll(`[data-pre-plain-text*="${lumber}:"]`)
     .forEach((element) => {
-      const container = element.closest('div[class="CzM4m"]');
+      const container = element.closest('div[class*="CzM4m"]');
       if (container && !!container.style) {
         container.style.display = "none";
       }
